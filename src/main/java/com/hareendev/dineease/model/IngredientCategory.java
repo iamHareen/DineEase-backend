@@ -27,3 +27,4 @@ public class IngredientCategory {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<IngredientsItem> ingredients = new ArrayList<>();
 }
+
