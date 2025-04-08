@@ -22,3 +22,4 @@ public class Category {
     @ManyToOne
     private Restaurant restaurant;
 }
+
