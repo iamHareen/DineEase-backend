@@ -80,7 +80,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
 
-        String username = loginRequest.getEmail();;
+        String username = loginRequest.getEmail();
         String password = loginRequest.getPassword();
         Authentication authentication = authenticate(username, password);
 
