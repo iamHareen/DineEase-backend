@@ -82,7 +82,7 @@ public class AuthController {
 
         String username = loginRequest.getEmail();
         String password = loginRequest.getPassword();
-        Authentication authentication = authenticate(username, password);
+        Authentication authentication = authenticate(username, password); // authentication is finished
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         String role = authorities.isEmpty()?null:authorities.iterator().next().getAuthority();
@@ -104,6 +104,7 @@ public class AuthController {
             throw new BadCredentialsException("Invalid Username ...");
         }
 
+        // check the password
         if(!passwordEncoder.matches(password, userDetails.getPassword())){
             throw new BadCredentialsException("Invalid Password ...");
         }
