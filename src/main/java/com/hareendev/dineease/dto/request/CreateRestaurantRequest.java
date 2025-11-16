@@ -1,5 +1,6 @@
 package com.hareendev.dineease.dto.request;
 
+import com.hareendev.dineease.model.Address;
 import com.hareendev.dineease.model.ContactInformation;
 import lombok.Data;
 
@@ -11,7 +12,7 @@ public class CreateRestaurantRequest {
     private String name;
     private String description;
     private String cuisineType;
-    private String address;
+    private Address address;
     private ContactInformation contactInformation;
     private String openingHours;
     private List<String> images;
