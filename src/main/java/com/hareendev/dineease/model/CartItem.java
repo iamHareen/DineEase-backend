@@ -8,18 +8,17 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     private Cart cart;
 
     @ManyToOne
@@ -27,6 +26,7 @@ public class CartItem {
 
     private int quantity;
 
+    @ElementCollection
     private List<String> ingredients;
 
     private Long totalPrice;

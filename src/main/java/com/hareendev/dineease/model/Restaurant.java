@@ -10,10 +10,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

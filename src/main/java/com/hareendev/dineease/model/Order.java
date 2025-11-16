@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orders")
+//@Table(name = "orders")
+@Entity
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +31,7 @@ public class Order {
 
     private String orderStatus;
 
-    private Date createAt;
+    private Date createdAt;
 
     @ManyToOne
     private Address deliverAddress;

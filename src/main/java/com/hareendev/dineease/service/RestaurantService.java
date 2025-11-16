@@ -1,6 +1,5 @@
 package com.hareendev.dineease.service;
 
-import com.hareendev.dineease.dto.RestaurantDTO;
 import com.hareendev.dineease.model.Restaurant;
 import com.hareendev.dineease.model.User;
 import com.hareendev.dineease.request.CreateRestaurantRequest;

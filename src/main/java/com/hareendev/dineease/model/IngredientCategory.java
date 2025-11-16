@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class IngredientCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

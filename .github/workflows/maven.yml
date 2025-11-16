@@ -6,13 +6,13 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: project CICD
+name: dine-east project CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "product" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "product" ]
 
 jobs:
   build:
