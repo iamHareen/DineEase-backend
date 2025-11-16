@@ -43,11 +43,11 @@ You will need the following tools installed on your machine:
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/your-username/your-repository.git](https://github.com/your-username/your-repository.git)
+    git clone https://github.com/iamHareen/DineEase-backend.git
     ```
 2.  **Navigate to the project directory:**
     ```sh
-    cd your-repository-name
+    cd DineEase-backend
     ```
 3.  **Configure your database and environment variables:**
     Open `src/main/resources/application.properties`. The project is configured to use environment variables for sensitive data.
