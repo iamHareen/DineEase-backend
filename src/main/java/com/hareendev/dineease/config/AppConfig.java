@@ -23,6 +23,7 @@ public class AppConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
 
+        // Set session management to stateless
         http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(Authorize -> Authorize
                         .requestMatchers("api/admin/**").hasAnyRole("RESTAURANT_OWNER", "ADMIN")
@@ -60,3 +61,4 @@ public class AppConfig {
         return new BCryptPasswordEncoder();
     }
 }
+
