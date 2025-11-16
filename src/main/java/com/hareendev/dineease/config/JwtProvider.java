@@ -3,6 +3,8 @@ package com.hareendev.dineease.config;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -13,16 +15,27 @@ import java.util.*;
 @Service
 public class JwtProvider {
 
-    private final SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+    private final SecretKey key;
+    private final long expiration;
+
+    public JwtProvider(
+            @Value("${jwt.secret.key}") String secretKey,
+            @Value("${jwt.expiration.ms}") long expiration
+    ) {
+        this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
+        this.expiration = expiration;
+    }
+
 
     // Method to generate JWT token
     public String generateToken(Authentication auth) {
         Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
         String roles = populateAuthorities(authorities);
 
-        return Jwts.builder().setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime()+86400)) // 24 hours
-                .claim("email",auth.getName())
+        return Jwts.builder()
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .claim("email", auth.getName())
                 .claim("authorities", roles)
                 .signWith(key)
                 .compact();

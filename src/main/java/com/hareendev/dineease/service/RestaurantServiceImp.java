@@ -35,7 +35,6 @@ public class RestaurantServiceImp implements RestaurantService {
     }
 
 
-
     @Override
     public Restaurant createRestaurant(CreateRestaurantRequest req, User user) {
 
@@ -122,8 +121,8 @@ public class RestaurantServiceImp implements RestaurantService {
         restaurantDTO.setId(restaurantId);
 
         boolean isFavorite = false;
-        List<RestaurantDTO> favorites = user.getFavourites();
-        for(RestaurantDTO favorite : favorites) {
+        List<Restaurant> favorites = user.getFavourites();
+        for(Restaurant favorite : favorites) {
             if(favorite.getId().equals(restaurantId)) {
                 isFavorite = true;
                 break;
@@ -133,7 +132,7 @@ public class RestaurantServiceImp implements RestaurantService {
         if(isFavorite) {
             favorites.removeIf(favorite -> favorite.getId().equals(restaurantId));
         } else {
-            favorites.add(restaurantDTO);
+            favorites.add(restaurant);
         }
 
         userRepository.save(user);

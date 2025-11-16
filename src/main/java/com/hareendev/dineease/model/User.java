@@ -2,7 +2,7 @@ package com.hareendev.dineease.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hareendev.dineease.dto.RestaurantDTO;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 @Entity
 public class User {
     @Id
@@ -32,8 +33,11 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 
-    @ElementCollection
-    private List<RestaurantDTO> favourites = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "user_favourites",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "restaurant_id"))
+    private List<Restaurant> favourites = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
