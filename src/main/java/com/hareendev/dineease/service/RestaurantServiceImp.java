@@ -1,10 +1,11 @@
 package com.hareendev.dineease.service;
 
+import com.hareendev.dineease.dto.RestaurantDTO;
 import com.hareendev.dineease.model.Restaurant;
 import com.hareendev.dineease.model.User;
 import com.hareendev.dineease.repository.AddressRepository;
 import com.hareendev.dineease.repository.RestaurantRepository;
-import com.hareendev.dineease.request.CreateRestaurantRequest;
+import com.hareendev.dineease.dto.request.CreateRestaurantRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

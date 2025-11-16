@@ -17,18 +17,23 @@ import java.util.List;
 @Service
 public class CustomerUserDetailsService implements UserDetailsService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public CustomerUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(username);
         if(user == null) {
-            throw new UsernameNotFoundException("user not fount with email "+username);
+            throw new UsernameNotFoundException("User not fount with email "+username);
         }
 
         USER_ROLE role = user.getRole();
+        // Set authorities
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role.toString()));
 

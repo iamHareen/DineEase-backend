@@ -1,4 +1,4 @@
-package com.hareendev.dineease.response;
+package com.hareendev.dineease.dto.response;
 
 import com.hareendev.dineease.model.USER_ROLE;
 import lombok.Data;

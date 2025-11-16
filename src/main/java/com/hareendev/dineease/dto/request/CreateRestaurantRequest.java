@@ -1,4 +1,4 @@
-package com.hareendev.dineease.request;
+package com.hareendev.dineease.dto.request;
 
 import com.hareendev.dineease.model.ContactInformation;
 import lombok.Data;

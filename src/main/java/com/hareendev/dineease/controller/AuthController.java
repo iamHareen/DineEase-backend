@@ -6,8 +6,8 @@ import com.hareendev.dineease.model.USER_ROLE;
 import com.hareendev.dineease.model.User;
 import com.hareendev.dineease.repository.CartRepository;
 import com.hareendev.dineease.repository.UserRepository;
-import com.hareendev.dineease.request.LoginRequest;
-import com.hareendev.dineease.response.AuthResponse;
+import com.hareendev.dineease.dto.request.LoginRequest;
+import com.hareendev.dineease.dto.response.AuthResponse;
 import com.hareendev.dineease.service.CustomerUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,20 +30,30 @@ import java.util.Collection;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
+
+    private final CartRepository cartRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final JwtProvider jwtProvider;
+
+    private final CustomerUserDetailsService customerUserDetailsService;
 
     @Autowired
-    private CartRepository cartRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtProvider jwtProvider;
-
-    @Autowired
-    private CustomerUserDetailsService customerUserDetailsService;
+    public AuthController(
+            UserRepository userRepository,
+            CartRepository cartRepository,
+            PasswordEncoder passwordEncoder,
+            JwtProvider jwtProvider,
+            CustomerUserDetailsService customerUserDetailsService) {
+        this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtProvider = jwtProvider;
+        this.customerUserDetailsService = customerUserDetailsService;
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception {
@@ -64,11 +74,14 @@ public class AuthController {
         cart.setCustomer(savedUser);
         cartRepository.save(cart);
 
+        // authenticate the user
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        // generate JWT token
         String jwt = jwtProvider.generateToken(authentication);
 
+        // prepare the response
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
         authResponse.setMessage("Register Success");
@@ -77,15 +90,18 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
 
-    @PostMapping("/signin")
-    public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
+    @PostMapping("/sign-in")
+    public ResponseEntity<AuthResponse> signIn(@RequestBody LoginRequest loginRequest) {
 
         String username = loginRequest.getEmail();
         String password = loginRequest.getPassword();
         Authentication authentication = authenticate(username, password); // authentication is finished
 
+        // set the authentication in the security context
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        // get the role
         String role = authorities.isEmpty()?null:authorities.iterator().next().getAuthority();
+
 
         String jwt = jwtProvider.generateToken(authentication);
 
@@ -97,6 +113,7 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
+    // method to authenticate user
     private Authentication authenticate(String username, String password) {
 
         UserDetails userDetails = customerUserDetailsService.loadUserByUsername(username);
