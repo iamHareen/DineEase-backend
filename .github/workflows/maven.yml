@@ -28,6 +28,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      env:
+        SPRING_APPLICATION_NAME: ${{ secrets.SPRING_APPLICATION_NAME }}
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+        SERVER_PORT: ${{ secrets.SERVER_PORT }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_EXPIRATION: ${{ secrets.JWT_EXPIRATION }}
       run: mvn clean install
 
     - name: Build & Push Docker Image
