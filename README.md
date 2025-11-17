@@ -73,16 +73,26 @@ You will need the following tools installed on your machine:
 
 ---
 
-## 📚 API Endpoints
+[//]: # (## 📚 API Endpoints)
 
-Here is a brief overview of the main API endpoints available. You can test these using a tool like Postman or Insomnia.
+[//]: # ()
+[//]: # (Here is a brief overview of the main API endpoints available. You can test these using a tool like Postman or Insomnia.)
 
-* `POST /auth/register`: Register a new user.
-* `POST /auth/login`: Authenticate a user and receive a JWT.
-* `GET /api/user/profile`: Get the logged-in user's profile.
-* `GET /api/restaurants`: Fetch all restaurants.
-* `GET /api/food/restaurant/{id}`: Fetch all food items for a specific restaurant.
-* `POST /api/cart/add`: Add an item to the cart.
-* `GET /api/cart`: View the user's cart.
-* `POST /api/orders/create`: Create a new order.
-* `GET /api/orders/user`: Get all orders for the logged-in user.
+[//]: # ()
+[//]: # (* `POST /auth/register`: Register a new user.)
+
+[//]: # (* `POST /auth/login`: Authenticate a user and receive a JWT.)
+
+[//]: # (* `GET /api/user/profile`: Get the logged-in user's profile.)
+
+[//]: # (* `GET /api/restaurants`: Fetch all restaurants.)
+
+[//]: # (* `GET /api/food/restaurant/{id}`: Fetch all food items for a specific restaurant.)
+
+[//]: # (* `POST /api/cart/add`: Add an item to the cart.)
+
+[//]: # (* `GET /api/cart`: View the user's cart.)
+
+[//]: # (* `POST /api/orders/create`: Create a new order.)
+
+[//]: # (* `GET /api/orders/user`: Get all orders for the logged-in user.)
