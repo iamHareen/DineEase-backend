@@ -9,7 +9,8 @@ The API handles all core business logic, including user authentication (JWT), re
 * **Backend:** Java, Spring Boot, Spring MVC
 * **Security:** Spring Security (with JWT Authentication)
 * **Database:** MySQL
-* **Payments:** Stripe API
+
+[//]: # (* **Payments:** Stripe API)
 * **Build Tool:** Maven
 
 ---
@@ -23,7 +24,8 @@ The API handles all core business logic, including user authentication (JWT), re
 * **Menu Management:** Functionality for managing food categories and ingredients.
 * **Shopping Cart:** A complete cart system to add, remove, and view items before checkout.
 * **Order API:** System for creating, viewing, and managing user orders.
-* **Payment Integration:** Secure and user-friendly payment processing using Stripe.
+
+[//]: # (* **Payment Integration:** Secure and user-friendly payment processing using Stripe.)
 
 ---
 
