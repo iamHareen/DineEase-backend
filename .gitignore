@@ -1,38 +1,43 @@
-HELP.md
-
-.DS_Store
-
-### Maven ###
+# Compiled files
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*.class
 
-### Maven Wrapper ###
-.mvn/wrapper/
-mvnw
-mvnw.cmd
+# Log files
+*.log
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IDE files
+.idea/
 *.iml
+*.iws
 *.ipr
-
-### STS ###
-.apt_generated
+.vscode/
+.settings/
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
 
-### Build Files ###
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-
+# Environment variables
 .env
-.gitattributes
+.env.local
+.env.production
+*.env
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
