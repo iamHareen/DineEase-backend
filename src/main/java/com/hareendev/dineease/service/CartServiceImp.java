@@ -118,24 +118,18 @@ public class CartServiceImp implements CartService {
     }
 
     @Override
-    public Cart findCartByUserId(String jwtToken) throws Exception {
-        if(jwtToken == null) {
-            throw new Exception("JWT token cannot be null");
-        }
-        User user = userService.findUserByJwtToken(jwtToken); // Get user from JWT token
-        return cartRepository.findByCustomerId(user.getId());
+    public Cart findCartByUserId(Long userId) throws Exception {
+        Cart cart = cartRepository.findByCustomerId(userId);
+        cart.setTotal(calculateCartTotals(cart));
+        return cart;
     }
 
     @Override
-    public Cart clearCart(String jwtToken) throws Exception {
-        if(jwtToken == null) {
-            throw new Exception("JWT token cannot be null");
-        }
-        User user = userService.findUserByJwtToken(jwtToken); // Get user from JWT token
+    public Cart clearCart(Long userId) throws Exception {
 
-        Cart cart = cartRepository.findByCustomerId(user.getId()); // Find cart by user ID
+        Cart cart = cartRepository.findByCustomerId(userId);
 
-        cart.getItems().clear(); // Clear all items from the cart
+        cart.getItems().clear();
         return cartRepository.save(cart);
     }
 }

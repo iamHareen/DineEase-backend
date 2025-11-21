@@ -4,7 +4,9 @@ import com.hareendev.dineease.dto.request.AddCartItemRequest;
 import com.hareendev.dineease.dto.request.UpdateCartItemRequest;
 import com.hareendev.dineease.model.Cart;
 import com.hareendev.dineease.model.CartItem;
+import com.hareendev.dineease.model.User;
 import com.hareendev.dineease.service.CartService;
+import com.hareendev.dineease.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
 
     private final CartService cartService;
+    private final UserService userService;
 
     @Autowired
-    public CartController(CartService cartService) {
+    public CartController(CartService cartService, UserService userService) {
         this.cartService = cartService;
+        this.userService = userService;
     }
 
     @PutMapping("/cart/add")
@@ -48,14 +52,16 @@ public class CartController {
     @PutMapping("/cart/clear")
     public ResponseEntity<Cart> clearCart(
             @RequestHeader("Authorization") String jwtToken) throws Exception {
-        Cart cart = cartService.clearCart(jwtToken);
+        User user = userService.findUserByJwtToken(jwtToken);
+        Cart cart = cartService.clearCart(user.getId());
         return new ResponseEntity<>(cart,HttpStatus.OK);
     }
 
     @GetMapping("/cart")
     public ResponseEntity<Cart> findUserCart(
             @RequestHeader("Authorization") String jwtToken) throws Exception {
-        Cart cart = cartService.findCartByUserId(jwtToken);
+        User user = userService.findUserByJwtToken(jwtToken);
+        Cart cart = cartService.findCartByUserId(user.getId());
         return new ResponseEntity<>(cart,HttpStatus.OK);
     }
 

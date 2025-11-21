@@ -1,10 +1,9 @@
 package com.hareendev.dineease.repository;
 
-import com.hareendev.dineease.model.Address;
+import com.hareendev.dineease.model.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Long> {
-    Address findById(Address deliveryAddress);
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }

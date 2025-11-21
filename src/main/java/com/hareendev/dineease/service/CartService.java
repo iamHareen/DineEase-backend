@@ -16,8 +16,8 @@ public interface CartService {
 
     Cart findCartById(Long cartId) throws Exception;
 
-    Cart findCartByUserId(String jwtToken) throws Exception;
+    Cart findCartByUserId(Long userId) throws Exception;
 
-    Cart clearCart(String jwtToken) throws Exception;
+    Cart clearCart(Long userId) throws Exception;
 
 }
