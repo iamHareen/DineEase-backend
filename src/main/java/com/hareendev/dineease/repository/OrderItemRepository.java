@@ -1,10 +1,9 @@
 package com.hareendev.dineease.repository;
 
-import com.hareendev.dineease.model.Cart;
+import com.hareendev.dineease.model.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart,Long> {
-    Cart findByCustomerId(Long customerId);
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }
